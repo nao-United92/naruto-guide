@@ -8,10 +8,10 @@ function App() {
     fetchCharacters();
   }, []);
 
-  const fetchCharacters = async () => {
+  const fetchCharacters = async (page) => {
     const apiUrl = 'http://localhost:3000/character';
 
-    const result = await axios.get(apiUrl);
+    const result = await axios.get(apiUrl, { params: { page } });
     setCharacters(result.data.characters);
     console.log(result);
   };
@@ -45,6 +45,11 @@ function App() {
               </div>
             );
           })}
+        </div>
+        <div className="pager">
+          <button className="prev">Previous</button>
+          <span className="page-number">1</span>
+          <button className="next">Next</button>
         </div>
       </main>
     </div>
